@@ -1,0 +1,6 @@
+[project]
+name = "cart-class"
+version = "0.1.0"
+description = "APHP EHR platform is built on a deprecated version. Optimal Python version is 3.7.16"
+readme = "README.md"
+requires-python = "<=3.7.16"

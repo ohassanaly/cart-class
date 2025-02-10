@@ -126,6 +126,7 @@ def build_note_points(note_df, note_nlp) :
     
     return(note_points.merge(note_df[["note_id", "visit_occurrence_id"]], on = "note_id", how= "left"))
 
+#aggregate different clinical notes from a stay 
 def build_visit_points(note_points) :
     return(note_points.groupby('visit_occurrence_id').agg(lambda x: any(x)).drop('note_id', axis=1))
 
@@ -139,6 +140,7 @@ def get_embedding(note_df, note_nlp) :
     
     return(visit_embeddings)
 
+#NLP pipeline
 def define_nlp(drugs, regex_dict, sections):
 
     drug_pattern = "|".join(re.escape(drug).replace("\\-", "-") for drug in drugs["drug"])
@@ -153,6 +155,7 @@ def define_nlp(drugs, regex_dict, sections):
     
     return(nlp)
 
+#Multi processing
 def nlp_pipe(src, df, nlp) : 
     if src == "pandas" :
         docs_iter = edsnlp.data.from_pandas(data=df, converter="omop", doc_attributes=["note_title","note_date","note_datetime","note_class_source_value",
