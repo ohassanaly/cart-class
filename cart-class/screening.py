@@ -139,7 +139,6 @@ def get_embedding(note_df, note_nlp) :
     
     return(visit_embeddings)
 
-
 def define_nlp(drugs, regex_dict, sections):
 
     drug_pattern = "|".join(re.escape(drug).replace("\\-", "-") for drug in drugs["drug"])
